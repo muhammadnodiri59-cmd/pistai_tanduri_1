@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pistai_Mahali - Барномаи идоракунии муштариён</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset ва асоси */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #10B981;
+            --primary-dark: #0CA678;
+            --primary-light: #D1FAE5;
+            --secondary: #8B5CF6;
+            --secondary-dark: #7C3AED;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            --danger: #EF4444;
+            --danger-dark: #DC2626;
+            --warning: #FBBF24;
+            --success: #10B981;
+            --light: #F9FAFB;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --border: #E5E7EB;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --sidebar-bg: #1F2937;
+            --sidebar-text: #F9FAFB;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Навбари канорӣ - дизайни нав */
+        .sidebar {
+            width: 300px;
+            background: linear-gradient(180deg, var(--sidebar-bg) 0%, #111827 100%);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            position: relative;
+        }
+
+        .logo {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(16, 185, 129, 0.2);
+        }
+
+        .logo p {
+            color: var(--primary-light);
+            font-size: 0.95rem;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .nav-menu {
+            list-style: none;
+            flex-grow: 1;
+            padding: 0 20px;
+        }
+
+        .nav-menu li {
+            margin-bottom: 8px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu a i {
+            margin-left: 15px;
+            font-size: 1.3rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-5px);
+            color: white;
+        }
+
+        .nav-menu a:hover::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .nav-menu a.active {
+            background: rgba(16, 185, 129, 0.2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .nav-menu a.active::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .sidebar-footer {
+            padding: 25px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 1%);
+            background-size: 15px 15px;
+            opacity: 0.3;
+        }
+
+        .stats-card h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .stats-card p {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Мазмуни асосӣ */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background: var(--light);
+        }
+
+        .header {
+            background: var(--card-bg);
+            padding: 25px 35px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h2 {
+            color: var(--dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+            padding-right: 15px;
+        }
+
+        .header h2::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 2px;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 14px 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            width: 320px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(40, 40);
+                opacity: 0;
+            }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #0CA678);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning), var(--accent-dark));
+            color: white;
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+        }
+
+        /* Формаи илова кардани муштарӣ */
+        .form-container {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-container h3 {
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-size: 1.6rem;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-container h3 i {
+            color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Ҷадвали муштариён */
+        .clients-table {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            margin-bottom: 35px;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 22px 35px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 2fr 1fr 1fr 1fr 1fr 0.8fr;
+            gap: 15px;
+            font-weight: 600;
+        }
+
+        .table-row {
+            padding: 22px 35px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 2fr 1fr 1fr 1fr 1fr 0.8fr;
+            gap: 15px;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .table-row:hover {
+            background-color: rgba(16, 185, 129, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-row.paid {
+            background-color: rgba(16, 185, 129, 0.08);
+            border-right: 4px solid var(--success);
+        }
+
+        .table-row.unpaid {
+            background-color: rgba(239, 68, 68, 0.05);
+            border-right: 4px solid var(--danger);
+        }
+
+        .vip-badge {
+            background: linear-gradient(135deg, #FFD700, #FF9500);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(255, 149, 0, 0.3);
+        }
+
+        .paid-badge {
+            background: linear-gradient(135deg, var(--success), #0CA678);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .unpaid-badge {
+            background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .edit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+
+        .delete-btn {
+            background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+        }
+
+        .payment-btn {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        }
+
+        /* Модалӣ */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 550px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlide 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .modal-header h3 {
+            color: var(--dark);
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-header h3 i {
+            color: var(--primary);
+        }
+
+        .close-modal {
+            background: rgba(239, 68, 68, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--danger);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            background: var(--danger);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .payment-history {
+            margin-top: 30px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .payment-history h3 {
+            color: var(--dark);
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-history h3 i {
+            color: var(--primary);
+        }
+
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+            background-color: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-right: 5px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .payment-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Рангҳои ҳолати кард */
+        .card-status-0 { border-right-color: var(--danger); }
+        .card-status-1 { border-right-color: var(--warning); }
+        .card-status-2 { border-right-color: var(--success); }
+
+        /* Аниматсияҳо */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .table-row, .payment-item, .form-container {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Барои экрани хурд */
+        @media (max-width: 1200px) {
+            .app-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 0;
+            }
+
+            .nav-menu {
+                display: flex;
+                overflow-x: auto;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .nav-menu li {
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+
+            .nav-menu a {
+                padding: 12px 20px;
+            }
+
+            .table-header, .table-row {
+                grid-template-columns: 1fr 1.5fr 2fr 1fr 1fr 1fr;
+            }
+
+            .client-phone, .client-vip {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 25px;
+                align-items: flex-start;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .search-bar input {
+                width: 100%;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .table-header, .table-row {
+                grid-template-columns: 1fr 2fr 1fr 1fr;
+                padding: 15px 20px;
+            }
+
+            .client-email, .client-magazine, .client-vip {
+                display: none;
+            }
+
+            .actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .action-btn {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Навбари канорӣ -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1>Pista</h1>
+                <p>Системаи идоракунии муштариён</p>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#" class="active" id="navDashboard"><i class="fas fa-chart-pie"></i> Дашборд</a></li>
+                <li><a href="#" id="navClients"><i class="fas fa-users"></i> Ҳамаи муштариён</a></li>
+                <li><a href="#" id="navAddClient"><i class="fas fa-user-plus"></i> Муштарии нав</a></li>
+                <li><a href="#" id="navVIP"><i class="fas fa-crown"></i> VIP муштариён</a></li>
+                <li><a href="#" id="navPayments"><i class="fas fa-credit-card"></i> Пардохтҳо</a></li>
+                <li><a href="#" id="navReports"><i class="fas fa-chart-line"></i> Ҳисоботҳо</a></li>
+                <li><a href="#" id="navSettings"><i class="fas fa-cog"></i> Танзимот</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="stats-card">
+                    <h3>ҲАМАГИИ МБОҶӢ</h3>
+                    <p id="totalDebt">0 сомонӣ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Мазмуни асосӣ -->
+        <div class="main-content">
+            <!-- Сарлавҳа -->
+            <div class="header">
+                <h2 id="pageTitle"><i class="fas fa-chart-pie"></i> Дашборди Pistai_Mahali</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Ҷустуҷӯи муштарӣ...">
+                    <button class="btn btn-primary" id="searchBtn">
+                        <i class="fas fa-search"></i> Ҷустуҷӯ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Формаи илова кардани муштарӣ -->
+            <div class="form-container" id="addClientForm">
+                <h3><i class="fas fa-user-plus"></i> Илова кардани муштарии нав</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientName"><i class="fas fa-user"></i> Номи пурра:</label>
+                        <input type="text" id="clientName" placeholder="Номи пурраи муштарӣ">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientEmail"><i class="fas fa-envelope"></i> Почтаи электронӣ:</label>
+                        <input type="email" id="clientEmail" placeholder="example@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone"><i class="fas fa-phone"></i> Рақами телефон:</label>
+                        <input type="tel" id="clientPhone" placeholder="+992 90 123 45 67">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientVIP"><i class="fas fa-crown"></i> Сатҳи VIP:</label>
+                        <select id="clientVIP">
+                            <option value="0">Оддӣ</option>
+                            <option value="1">Миёна</option>
+                            <option value="2">Олӣ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientMagazine"><i class="fas fa-book"></i> Маҷаллаи додашуда:</label>
+                        <input type="text" id="clientMagazine" placeholder="Маҷаллаи №...">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientCredits"><i class="fas fa-money-bill-wave"></i> МБОҶӢ додан:</label>
+                        <input type="number" id="clientCredits" placeholder="Маблағ ба сомонӣ" min="0" step="50">
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="saveClientBtn">
+                    <i class="fas fa-save"></i> Захира кардани муштарӣ
+                </button>
+            </div>
+
+            <!-- Ҷадвали муштариён -->
+            <div class="clients-table">
+                <div class="table-header">
+                    <div>ID</div>
+                    <div>Ном</div>
+                    <div>Почта</div>
+                    <div>Телефон</div>
+                    <div>VIP</div>
+                    <div>Маҷалла</div>
+                    <div>МБОҶӢ</div>
+                    <div>Амалҳо</div>
+                </div>
+
+                <div id="clientsList">
+                    <!-- Муштариён дар инҷо ҷойгир карда мешаванд -->
+                </div>
+            </div>
+
+            <!-- Таърихи пардохтҳо -->
+            <div class="payment-history">
+                <h3><i class="fas fa-history"></i> Таърихи пардохтҳо</h3>
+                <div id="paymentHistory">
+                    <!-- Таърихи пардохтҳо дар инҷо ҷойгир карда мешаванд -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалии пардохт -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-money-bill-wave"></i> Илова кардани пардохт</h3>
+                <button class="close-modal" id="closePaymentModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="paymentAmount"><i class="fas fa-coins"></i> Маблағи пардохт (сомонӣ):</label>
+                <input type="number" id="paymentAmount" min="0" step="50" placeholder="Маблағро ворид кунед">
+            </div>
+            <div class="form-group">
+                <label for="paymentDate"><i class="fas fa-calendar"></i> Санаи пардохт:</label>
+                <input type="date" id="paymentDate">
+            </div>
+            <button class="btn btn-success" id="savePaymentBtn" style="width: 100%; margin-top: 25px;">
+                <i class="fas fa-check-circle"></i> Тасдиқ кардани пардохт
+            </button>
+        </div>
+    </div>
+
+    <!-- Модалии таҳрир кардани муштарӣ -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Таҳрир кардани муштарӣ</h3>
+                <button class="close-modal" id="closeEditModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="editName"><i class="fas fa-user"></i> Номи пурра:</label>
+                <input type="text" id="editName">
+            </div>
+            <div class="form-group">
+                <label for="editEmail"><i class="fas fa-envelope"></i> Почтаи электронӣ:</label>
+                <input type="email" id="editEmail">
+            </div>
+            <div class="form-group">
+                <label for="editPhone"><i class="fas fa-phone"></i> Рақами телефон:</label>
+                <input type="tel" id="editPhone">
+            </div>
+            <div class="form-group">
+                <label for="editVIP"><i class="fas fa-crown"></i> Сатҳи VIP:</label>
+                <select id="editVIP">
+                    <option value="0">Оддӣ</option>
+                    <option value="1">Миёна</option>
+                    <option value="2">Олӣ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editMagazine"><i class="fas fa-book"></i> Маҷаллаи додашуда:</label>
+                <input type="text" id="editMagazine">
+            </div>
+            <div class="form-group">
+                <label for="editCredits"><i class="fas fa-money-bill-wave"></i> МБОҶӢ додан:</label>
+                <input type="number" id="editCredits" min="0" step="50">
+            </div>
+            <button class="btn btn-primary" id="updateClientBtn" style="width: 100%; margin-top: 25px;">
+                <i class="fas fa-sync-alt"></i> Навсозӣ кардани маълумот
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Маълумотҳои аввалӣ
+        let clients = JSON.parse(localStorage.getItem('pistai_clients')) || [];
+        let payments = JSON.parse(localStorage.getItem('pistai_payments')) || [];
+        let currentClientId = null;
+        let editClientId = null;
+
+        // Функсияҳои аввалӣ
+        function init() {
+            updateClientsList();
+            updateTotalDebt();
+            updatePaymentHistory();
+            setupEventListeners();
+        }
+
+        // Танзими ҳодисаҳо
+        function setupEventListeners() {
+            // Тугмаи захира кардани муштарӣ
+            document.getElementById('saveClientBtn').addEventListener('click', addNewClient);
+
+            // Тугмаҳои навигатсия
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-menu a').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const pageId = this.id;
+                    showPage(pageId);
+                });
+            });
+
+            // Тугмаи ҷустуҷӯ
+            document.getElementById('searchBtn').addEventListener('click', searchClients);
+            document.getElementById('searchInput').addEventListener('input', searchClients);
+
+            // Модалӣ
+            document.getElementById('closePaymentModal').addEventListener('click', () => {
+                document.getElementById('paymentModal').style.display = 'none';
+            });
+
+            document.getElementById('closeEditModal').addEventListener('click', () => {
+                document.getElementById('editModal').style.display = 'none';
+            });
+
+            document.getElementById('savePaymentBtn').addEventListener('click', addPayment);
+            document.getElementById('updateClientBtn').addEventListener('click', updateClient);
+
+            // Пур кардани санаи имрӯз дар пардохт
+            document.getElementById('paymentDate').valueAsDate = new Date();
+
+            // Барои тугмаҳои модалӣ
+            window.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+        }
+
+        // Намоиш додани саҳифа
+        function showPage(pageId) {
+            const pages = {
+                'navDashboard': '<i class="fas fa-chart-pie"></i> Дашборди Pistai_Mahali',
+                'navClients': '<i class="fas fa-users"></i> Ҳамаи муштариён',
+                'navAddClient': '<i class="fas fa-user-plus"></i> Муштарии нав',
+                'navVIP': '<i class="fas fa-crown"></i> VIP муштариён',
+                'navPayments': '<i class="fas fa-credit-card"></i> Пардохтҳо',
+                'navReports': '<i class="fas fa-chart-line"></i> Ҳисоботҳо',
+                'navSettings': '<i class="fas fa-cog"></i> Танзимот'
+            };
+
+            document.getElementById('pageTitle').innerHTML = pages[pageId] || pages['navDashboard'];
+
+            // Намоиш додан/пинҳон кардани форма
+            if (pageId === 'navAddClient') {
+                document.getElementById('addClientForm').style.display = 'block';
+            } else {
+                document.getElementById('addClientForm').style.display = 'none';
+            }
+
+            // Агар саҳифаи муштариён ё дашборд бошад
+            if (pageId === 'navClients' || pageId === 'navDashboard') {
+                document.getElementById('clientsList').style.display = 'block';
+                document.getElementById('paymentHistory').style.display = 'block';
+            }
+        }
+
+        // Илова кардани муштарии нав
+        function addNewClient() {
+            const name = document.getElementById('clientName').value.trim();
+            const email = document.getElementById('clientEmail').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+            const vip = parseInt(document.getElementById('clientVIP').value);
+            const magazine = document.getElementById('clientMagazine').value.trim();
+            const credits = parseFloat(document.getElementById('clientCredits').value) || 0;
+
+            if (!name || !email || !phone) {
+                alert('Лутфан, ном, почта ва рақами телефони муштарӣро пур кунед!');
+                return;
+            }
+
+            const newClient = {
+                id: Date.now(),
+                name,
+                email,
+                phone,
+                vip,
+                magazine,
+                credits,
+                paid: 0,
+                remaining: credits,
+                status: credits > 0 ? 0 : 2,
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            clients.push(newClient);
+            saveToLocalStorage();
+            updateClientsList();
+            updateTotalDebt();
+
+            // Тоза кардани форма
+            document.getElementById('clientName').value = '';
+            document.getElementById('clientEmail').value = '';
+            document.getElementById('clientPhone').value = '';
+            document.getElementById('clientVIP').value = '0';
+            document.getElementById('clientMagazine').value = '';
+            document.getElementById('clientCredits').value = '';
+
+            // Огоҳии пурра
+            showNotification('Муштарии нав бо муваффақият илова карда шуд!', 'success');
+        }
+
+        // Навсозӣ кардани рӯйхати муштариён
+        function updateClientsList() {
+            const clientsList = document.getElementById('clientsList');
+            clientsList.innerHTML = '';
+
+            clients.forEach(client => {
+                const vipText = ['Оддӣ', 'Миёна', 'Олӣ'][client.vip] || 'Оддӣ';
+                const statusClass = `card-status-${client.status}`;
+                const statusBadge = client.remaining <= 0 ?
+                    '<span class="paid-badge">ПУРРА ПАРДОХТ</span>' :
+                    `<span class="unpaid-badge">${client.remaining} сомонӣ</span>`;
+
+                const row = document.createElement('div');
+                row.className = `table-row ${statusClass} ${client.remaining <= 0 ? 'paid' : 'unpaid'}`;
+                row.innerHTML = `
+                    <div>${client.id.toString().substring(8)}</div>
+                    <div><strong>${client.name}</strong></div>
+                    <div class="client-email">${client.email}</div>
+                    <div class="client-phone">${client.phone}</div>
+                    <div><span class="vip-badge">${vipText}</span></div>
+                    <div class="client-magazine">${client.magazine || 'Нест'}</div>
+                    <div>
+                        <div><strong>Ҳамагӣ: ${client.credits} сомонӣ</strong></div>
+                        <div>Пардохт шуд: ${client.paid} сомонӣ</div>
+                        <div>МБОҶӢ: ${client.remaining} сомонӣ</div>
+                    </div>
+                    <div class="actions">
+                        <button class="action-btn edit-btn" onclick="openEditModal(${client.id})" title="Таҳрир">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn payment-btn" onclick="openPaymentModal(${client.id})" title="Пардохт">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteClient(${client.id})" title="Нест кардан">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+
+                clientsList.appendChild(row);
+            });
+        }
+
+        // Кушодани модалии пардохт
+        function openPaymentModal(clientId) {
+            currentClientId = clientId;
+            document.getElementById('paymentModal').style.display = 'flex';
+            document.getElementById('paymentAmount').focus();
+        }
+
+        // Илова кардани пардохт
+        function addPayment() {
+            const amount = parseFloat(document.getElementById('paymentAmount').value);
+            const date = document.getElementById('paymentDate').value;
+
+            if (!amount || amount <= 0) {
+                showNotification('Лутфан, маблағи дурусти пардохтро ворид кунед!', 'error');
+                return;
+            }
+
+            const clientIndex = clients.findIndex(c => c.id === currentClientId);
+            if (clientIndex === -1) return;
+
+            const client = clients[clientIndex];
+
+            if (amount > client.remaining) {
+                showNotification(`Маблағи пардохт набояд аз мбоҷӣ зиёд бошад! МБОҶӢ: ${client.remaining} сомонӣ`, 'error');
+                return;
+            }
+
+            // Навсозӣ кардани маълумоти муштарӣ
+            client.paid += amount;
+            client.remaining -= amount;
+            client.status = client.remaining <= 0 ? 2 : (client.remaining < client.credits ? 1 : 0);
+
+            // Илова кардани пардохт ба таърих
+            const payment = {
+                id: Date.now(),
+                clientId: currentClientId,
+                clientName: client.name,
+                amount,
+                date,
+                timestamp: new Date().toISOString()
+            };
+
+            payments.push(payment);
+
+            // Агар мбоҷӣ пурра пардохт шуд, хабар диҳед
+            if (client.remaining <= 0) {
+                setTimeout(() => {
+                    if (confirm(`Муштарии ${client.name} мбоҷии худро пурра пардохт кард. Оё мехоҳед ӯро аз рӯйхат нест кунед?`)) {
+                        deleteClient(currentClientId);
+                    }
+                }, 500);
+            }
+
+            saveToLocalStorage();
+            updateClientsList();
+            updateTotalDebt();
+            updatePaymentHistory();
+
+            document.getElementById('paymentModal').style.display = 'none';
+            document.getElementById('paymentAmount').value = '';
+
+            showNotification(`Пардохти ${amount} сомонӣ бо муваффақият қайд карда шуд!`, 'success');
+        }
+
+        // Кушодани модалии таҳрир
+        function openEditModal(clientId) {
+            editClientId = clientId;
+            const client = clients.find(c => c.id === clientId);
+
+            if (!client) return;
+
+            document.getElementById('editName').value = client.name;
+            document.getElementById('editEmail').value = client.email;
+            document.getElementById('editPhone').value = client.phone;
+            document.getElementById('editVIP').value = client.vip;
+            document.getElementById('editMagazine').value = client.magazine;
+            document.getElementById('editCredits').value = client.credits;
+
+            document.getElementById('editModal').style.display = 'flex';
+            document.getElementById('editName').focus();
+        }
+
+        // Навсозӣ кардани муштарӣ
+        function updateClient() {
+            const clientIndex = clients.findIndex(c => c.id === editClientId);
+            if (clientIndex === -1) return;
+
+            const client = clients[clientIndex];
+
+            client.name = document.getElementById('editName').value.trim();
+            client.email = document.getElementById('editEmail').value.trim();
+            client.phone = document.getElementById('editPhone').value.trim();
+            client.vip = parseInt(document.getElementById('editVIP').value);
+            client.magazine = document.getElementById('editMagazine').value.trim();
+
+            // Агар мбоҷӣ тағир ёфт, ҳисобҳои пардохтро навсозӣ кунем
+            const newCredits = parseFloat(document.getElementById('editCredits').value) || 0;
+            if (newCredits !== client.credits) {
+                const difference = newCredits - client.credits;
+                client.credits = newCredits;
+                client.remaining += difference;
+                client.status = client.remaining <= 0 ? 2 : (client.remaining < client.credits ? 1 : 0);
+            }
+
+            saveToLocalStorage();
+            updateClientsList();
+            updateTotalDebt();
+
+            document.getElementById('editModal').style.display = 'none';
+            showNotification('Маълумоти муштарӣ бо муваффақият навсозӣ карда шуд!', 'success');
+        }
+
+        // Нест кардани муштарӣ
+        function deleteClient(clientId) {
+            if (!confirm('Оё шумо мутмаин ҳастед, ки мехоҳед ин муштарӣро нест кунед?')) {
+                return;
+            }
+
+            const clientIndex = clients.findIndex(c => c.id === clientId);
+            if (clientIndex === -1) return;
+
+            const client = clients[clientIndex];
+
+            // Агар мбоҷӣ вуҷуд дошта бошад, огоҳӣ диҳед
+            if (client.remaining > 0) {
+                if (!confirm(`Ин муштарӣ то ҳол ${client.remaining} сомонӣ мбоҷӣ дорад. Оё боз ҳам мехоҳед нест кунед?`)) {
+                    return;
+                }
+            }
+
+            clients.splice(clientIndex, 1);
+            saveToLocalStorage();
+            updateClientsList();
+            updateTotalDebt();
+            updatePaymentHistory();
+
+            showNotification('Муштарӣ бо муваффақият нест карда шуд!', 'success');
+        }
+
+        // Ҷустуҷӯи муштариён
+        function searchClients() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const clientsList = document.getElementById('clientsList');
+            clientsList.innerHTML = '';
+
+            const filteredClients = clients.filter(client =>
+                client.name.toLowerCase().includes(searchTerm) ||
+                client.email.toLowerCase().includes(searchTerm) ||
+                client.phone.includes(searchTerm) ||
+                (client.magazine && client.magazine.toLowerCase().includes(searchTerm))
+            );
+
+            if (filteredClients.length === 0 && searchTerm) {
+                clientsList.innerHTML = `
+                    <div class="table-row" style="grid-template-columns: 1fr; text-align: center; padding: 40px;">
+                        <div style="color: var(--gray); font-size: 1.1rem;">
+                            <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 15px; opacity: 0.5;"></i><br>
+                            Муштаре пайдо нашуд
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredClients.forEach(client => {
+                const vipText = ['Оддӣ', 'Миёна', 'Олӣ'][client.vip] || 'Оддӣ';
+                const statusClass = `card-status-${client.status}`;
+                const statusBadge = client.remaining <= 0 ?
+                    '<span class="paid-badge">ПУРРА ПАРДОХТ</span>' :
+                    `<span class="unpaid-badge">${client.remaining} сомонӣ</span>`;
+
+                const row = document.createElement('div');
+                row.className = `table-row ${statusClass} ${client.remaining <= 0 ? 'paid' : 'unpaid'}`;
+                row.innerHTML = `
+                    <div>${client.id.toString().substring(8)}</div>
+                    <div><strong>${client.name}</strong></div>
+                    <div class="client-email">${client.email}</div>
+                    <div class="client-phone">${client.phone}</div>
+                    <div><span class="vip-badge">${vipText}</span></div>
+                    <div class="client-magazine">${client.magazine || 'Нест'}</div>
+                    <div>
+                        <div><strong>Ҳамагӣ: ${client.credits} сомонӣ</strong></div>
+                        <div>Пардохт шуд: ${client.paid} сомонӣ</div>
+                        <div>МБОҶӢ: ${client.remaining} сомонӣ</div>
+                    </div>
+                    <div class="actions">
+                        <button class="action-btn edit-btn" onclick="openEditModal(${client.id})" title="Таҳрир">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn payment-btn" onclick="openPaymentModal(${client.id})" title="Пардохт">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteClient(${client.id})" title="Нест кардан">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+
+                clientsList.appendChild(row);
+            });
+        }
+
+        // Навсозӣ кардани ҳамагии мбоҷӣ
+        function updateTotalDebt() {
+            const total = clients.reduce((sum, client) => sum + client.remaining, 0);
+            document.getElementById('totalDebt').textContent = `${total.toLocaleString()} сомонӣ`;
+        }
+
+        // Навсозӣ кардани таърихи пардохтҳо
+        function updatePaymentHistory() {
+            const paymentHistory = document.getElementById('paymentHistory');
+            paymentHistory.innerHTML = '';
+
+            // Охирин 5 пардохтҳоро нишон диҳед
+            const recentPayments = payments.slice(-5).reverse();
+
+            if (recentPayments.length === 0) {
+                paymentHistory.innerHTML = '<div class="payment-item" style="justify-content: center; color: var(--gray);"><i class="fas fa-info-circle" style="margin-left: 10px;"></i> Ҳанӯз пардохте вуҷуд надорад.</div>';
+                return;
+            }
+
+            recentPayments.forEach(payment => {
+                const paymentItem = document.createElement('div');
+                paymentItem.className = 'payment-item';
+                paymentItem.innerHTML = `
+                    <div>
+                        <strong>${payment.clientName}</strong><br>
+                        <small style="color: var(--gray);">${payment.date}</small>
+                    </div>
+                    <div><strong style="color: var(--success); font-size: 1.2rem;">+${payment.amount} сомонӣ</strong></div>
+                `;
+                paymentHistory.appendChild(paymentItem);
+            });
+        }
+
+        // Захира кардан дар localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('pistai_clients', JSON.stringify(clients));
+            localStorage.setItem('pistai_payments', JSON.stringify(payments));
+        }
+
+        // Огоҳиҳо
+        function showNotification(message, type = 'info') {
+            // Дар ин ҷо метавонед системаи огоҳиҳои зебо илова кунед
+            alert(message); // Барои соддагӣ
+        }
+
+        // Илова кардани мисолҳо барои санҷиш
+        function addSampleData() {
+            if (clients.length === 0) {
+                const sampleClients = [
+                    {
+                        id: 1001,
+                        name: "Алишер Навъӣ",
+                        email: "alisher@example.com",
+                        phone: "+992 90 111 22 33",
+                        vip: 2,
+                        magazine: "Маҷаллаи №5",
+                        credits: 500,
+                        paid: 250,
+                        remaining: 250,
+                        status: 1,
+                        date: "2024-01-15"
+                    },
+                    {
+                        id: 1002,
+                        name: "Сафо Раҳимӣ",
+                        email: "safo@example.com",
+                        phone: "+992 93 222 33 44",
+                        vip: 1,
+                        magazine: "Маҷаллаи №3",
+                        credits: 300,
+                        paid: 300,
+                        remaining: 0,
+                        status: 2,
+                        date: "2024-01-10"
+                    },
+                    {
+                        id: 1003,
+                        name: "Малика Ҷумъаева",
+                        email: "malika@example.com",
+                        phone: "+992 91 333 44 55",
+                        vip: 0,
+                        magazine: "Маҷаллаи №1",
+                        credits: 200,
+                        paid: 0,
+                        remaining: 200,
+                        status: 0,
+                        date: "2024-01-20"
+                    },
+                    {
+                        id: 1004,
+                        name: "Фаррух Салимов",
+                        email: "farrukh@example.com",
+                        phone: "+992 92 444 55 66",
+                        vip: 1,
+                        magazine: "Маҷаллаи №2",
+                        credits: 450,
+                        paid: 200,
+                        remaining: 250,
+                        status: 1,
+                        date: "2024-01-25"
+                    }
+                ];
+
+                clients = sampleClients;
+                saveToLocalStorage();
+                updateClientsList();
+                updateTotalDebt();
+                updatePaymentHistory();
+            }
+        }
+
+        // Оғоз кардани барнома
+        document.addEventListener('DOMContentLoaded', function() {
+            init();
+            addSampleData();
+        });
+
+        // Функсияҳоро ба window илова кардан барои истифода дар HTML
+        window.openEditModal = openEditModal;
+        window.openPaymentModal = openPaymentModal;
+        window.deleteClient = deleteClient;
+    </script>
+</body>
+</html>
